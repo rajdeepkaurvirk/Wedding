@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Rajdeep &amp; Inderjeet · May 2, 2027</title>
+<meta name="description" content="The vyah countdown.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Rajdeep &amp; Inderjeet · May 2, 2027">
+<meta property="og:description" content="The vyah countdown.">
+<meta name="theme-color" content="#1a0410">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a0410;--ruby:#5c0f2a;--champ:#f0d9b5;--blush:#e8b4bc;--cream:#f8e8d0;--line:rgba(240,217,181,.55)}
+*{box-sizing:border-box}
+html{background:var(--ink)}
+body{
+  margin:0;min-height:100vh;min-height:100dvh;color:var(--champ);overflow-x:hidden;
+  font-family:"IM Fell English",Georgia,serif;
+  background:
+    linear-gradient(112deg,transparent 0 18%,rgba(255,225,235,.11) 27%,transparent 38%,rgba(255,225,235,.07) 55%,transparent 66%,rgba(255,225,235,.09) 80%,transparent 90%),
+    linear-gradient(68deg,rgba(0,0,0,.45),transparent 38%,rgba(0,0,0,.35) 72%),
+    radial-gradient(ellipse at 25% 8%,#7d1a3d 0,transparent 55%),
+    radial-gradient(ellipse at 80% 90%,#4a0c24 0,transparent 55%),
+    var(--ink);
+  background-attachment:fixed;
+}
+/* lace mesh over the satin */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' fill='none' stroke='%23e8b4bc' stroke-opacity='.13'%3E%3Ccircle cx='28' cy='28' r='5'/%3E%3Cpath d='M28 6c5 6 5 10 0 16-5-6-5-10 0-16ZM28 34c5 6 5 10 0 16-5-6-5-10 0-16ZM6 28c6-5 10-5 16 0-6 5-10 5-16 0ZM34 28c6-5 10-5 16 0-6 5-10 5-16 0Z'/%3E%3Ccircle cx='0' cy='0' r='3'/%3E%3Ccircle cx='56' cy='0' r='3'/%3E%3Ccircle cx='0' cy='56' r='3'/%3E%3Ccircle cx='56' cy='56' r='3'/%3E%3C/svg%3E")}
+/* scalloped lace trim */
+.lace{position:fixed;left:0;right:0;height:44px;z-index:2;pointer-events:none;filter:drop-shadow(0 3px 6px rgba(0,0,0,.6));
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='44'%3E%3Cpath d='M0 0H40V12A20 20 0 0 1 0 12Z' fill='%230d0207'/%3E%3Cpath d='M0 12A20 20 0 0 0 40 12M8 12A12 12 0 0 0 32 12' fill='none' stroke='%23e8b4bc' stroke-opacity='.75'/%3E%3Ccircle cx='20' cy='21' r='2' fill='%23e8b4bc' fill-opacity='.8'/%3E%3C/svg%3E") repeat-x}
+.lace.top{top:0}
+.lace.bot{bottom:0;transform:scaleY(-1)}
+
+.page{position:relative;z-index:1;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;
+  padding:calc(64px + env(safe-area-inset-top)) 18px calc(64px + env(safe-area-inset-bottom))}
+.wrap{width:min(540px,100%);margin:auto}
+
+/* Victorian frame */
+.frame{position:relative;text-align:center;padding:30px 16px 26px;border:4px double var(--line);border-radius:6px;
+  background:rgba(18,2,9,.6);box-shadow:0 10px 40px rgba(0,0,0,.5);animation:up 1s ease both}
+.c{position:absolute;font-size:22px;color:var(--blush);line-height:1;background:#1a0410;padding:0 3px}
+.tl{top:-13px;left:14px}.tr{top:-13px;right:14px;transform:scaleX(-1)}
+.bl{bottom:-13px;left:14px;transform:scaleY(-1)}.br{bottom:-13px;right:14px;transform:scale(-1)}
+.cameo{width:70px;height:88px;margin:0 auto 14px;border-radius:50%;border:4px double var(--line);
+  background:radial-gradient(ellipse at 35% 30%,#a02452,#4a0c24 70%);display:flex;align-items:center;justify-content:center;
+  font-family:"Pinyon Script",cursive;font-size:30px;color:var(--cream);box-shadow:0 0 18px rgba(232,180,188,.25)}
+.eyebrow{font-family:"IM Fell English SC",serif;font-size:13px;letter-spacing:.24em;color:var(--blush)}
+.names{margin:14px 0 0;font-family:"Playfair Display",serif;font-style:italic;font-weight:700;color:var(--champ);
+  font-size:clamp(40px,12.5vw,64px);line-height:1;text-shadow:0 2px 16px rgba(240,217,181,.25)}
+.amp{display:block;font-family:"Pinyon Script",cursive;font-style:normal;font-weight:400;font-size:.7em;color:var(--blush);line-height:1;margin:2px 0}
+.date{margin-top:16px;font-family:"IM Fell English SC",serif;font-size:16px;letter-spacing:.3em;color:var(--cream)}
+.orn{margin-top:12px;color:var(--blush);letter-spacing:.5em;font-size:13px}
+
+/* Countdown */
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);margin-top:24px;border:4px double var(--line);border-radius:6px;
+  background:rgba(18,2,9,.6);animation:up 1s .2s ease both}
+.unit{text-align:center;padding:18px 2px 14px;position:relative}
+.unit+.unit::before{content:"";position:absolute;left:0;top:22%;height:56%;border-left:1px dotted var(--line)}
+.number{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(28px,8.5vw,46px);line-height:1;color:var(--champ)}
+.label{margin-top:8px;font-family:"IM Fell English SC",serif;font-size:12px;letter-spacing:.16em;color:var(--blush)}
+
+/* Gazette */
+.bulletin{margin-top:22px;padding:22px 18px 24px;text-align:center;border:1px solid var(--line);outline:1px solid rgba(240,217,181,.25);outline-offset:4px;
+  border-radius:4px;background:rgba(92,15,42,.4);animation:up 1s .4s ease both}
+.bulletin h2{margin:0 0 12px;font-family:"IM Fell English SC",serif;font-weight:400;font-size:14px;letter-spacing:.2em;color:var(--blush)}
+.note{font-style:italic;font-size:clamp(21px,5.6vw,26px);line-height:1.3;color:var(--cream);min-height:2.6em;
+  display:flex;align-items:center;justify-content:center}
+
+footer{margin-top:24px;text-align:center;animation:up 1s .6s ease both}
+.ld{font-family:"IM Fell English SC",serif;font-size:13px;letter-spacing:.12em;color:var(--blush);line-height:1.6}
+.heart{margin-top:12px;padding:9px 22px;border:1px solid var(--line);border-radius:99px;background:rgba(18,2,9,.6);
+  color:var(--champ);font-family:"IM Fell English SC",serif;font-size:14px;letter-spacing:.14em;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.heart:active{background:rgba(232,180,188,.2)}
+.heart:focus-visible{outline:1px solid var(--champ);outline-offset:3px}
+.toast{position:fixed;z-index:5;left:50%;bottom:calc(58px + env(safe-area-inset-bottom));transform:translate(-50%,14px);
+  width:max-content;max-width:88vw;text-align:center;background:var(--champ);color:var(--ink);
+  padding:11px 18px;border-radius:6px;font-style:italic;font-size:18px;opacity:0;pointer-events:none;transition:.35s ease}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:360px){.label{font-size:10px;letter-spacing:.08em}}
+</style>
+</head>
+<body>
+<div class="lace top"></div><div class="lace bot"></div>
+<div class="page"><div class="wrap">
+
+  <header class="frame">
+    <span class="c tl">❦</span><span class="c tr">❦</span><span class="c bl">❦</span><span class="c br">❦</span>
+    <div class="cameo" aria-hidden="true">R&amp;I</div>
+    <div class="eyebrow">Two Hearts Request the Pleasure</div>
+    <h1 class="names">Rajdeep<span class="amp">&amp;</span>Inderjeet</h1>
+    <div class="date">May 2 · 2027</div>
+    <div class="orn" aria-hidden="true">✦ ❦ ✦</div>
+  </header>
+
+  <section class="countdown" aria-label="Wedding countdown">
+    <div class="unit"><div class="number" id="days">000</div><div class="label">Days</div></div>
+    <div class="unit"><div class="number" id="hours">00</div><div class="label">Hours</div></div>
+    <div class="unit"><div class="number" id="minutes">00</div><div class="label">Minutes</div></div>
+    <div class="unit"><div class="number" id="seconds">00</div><div class="label">Seconds</div></div>
+  </section>
+
+  <section class="bulletin">
+    <h2>❦ The Daily Auntie Gazette ❦</h2>
+    <div class="note" id="dailyNote"></div>
+  </section>
+
+  <footer>
+    <div class="ld">Long-distance update: Ontario &amp; BC are 3 hours apart.<br>Not for much longer.</div>
+    <button class="heart" id="heart" type="button">♡ Tap for a blessing</button>
+  </footer>
+
+</div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* Wedding: May 2, 2027, 12:00 AM Eastern (EDT). Change here to edit the date. */
+const weddingDate = new Date("2027-05-02T00:00:00-04:00");
+
+const $ = id => document.getElementById(id);
+const pad = (n, l = 2) => String(n).padStart(l, "0");
+
+const notes = [
+/* Long distance */
+"Ontario and BC are three hours apart. You two are not.",
+"Soon, goodnight won't need a Wi-Fi connection.",
+"One day you'll fight over the thermostat in person. Cannot wait.",
+"Your phone battery has earned a spot at the wedding.",
+"Airport hugs are great. Kitchen hugs will be better.",
+"The Wi-Fi has carried this relationship. Say thank you.",
+"Long distance: the world's most romantic group project.",
+"You've mastered the 'wait, what time is it there?' maths.",
+"Soon nobody has to say 'you're on mute.'",
+"Final season of the long-distance era. No filler episodes.",
+"Airport goodbyes are on their farewell tour.",
+"'Call me when you land' becomes 'call me when you're home.'",
+"Sharing a blanket will soon not require FaceTime.",
+"Every flight so far was training for this.",
+"Soon: leftovers you can actually steal, instead of just threaten through a screen.",
+"The 2 a.m. text era is winding down. The 2 a.m. snoring era begins.",
+"Somewhere, an airline is going to miss you both.",
+"You survived time zones. Seating charts are nothing.",
+"Screen-share dinners are becoming real dinners with real dishes to wash.",
+"'Miss you' is about to become 'pass the salt.'",
+"Your future kids will hear about the time zones. Dramatically.",
+"Long distance taught you patience. Marriage will test it. Good luck.",
+"Soon 'see you next month' becomes 'see you in the kitchen.'",
+"Your favourite emoji is about to get a well-deserved rest.",
+"Three hours behind, but always ahead of the game.",
+"Voice notes at midnight: soon to be live commentary.",
+"Good things come to those who wait and book flights.",
+"No more 'I'll be there soon' from a different time zone.",
+"Soon, good morning will be delivered in person.",
+"The countdown app knows how well you two waited.",
+/* Wedding planning */
+"Somebody's uncle already has strong opinions about the menu.",
+"The DJ has been warned: no slow songs unless requested.",
+"Lehenga fittings count as cardio. Legally.",
+"The guest list is a living document and a battlefield.",
+"Mehndi rule: sit still. Nobody does. The rule stands.",
+"The wedding budget is where numbers go to be humbled.",
+"The mood board is on revision number sixteen.",
+"Somewhere, a decorator is sighing into a spreadsheet.",
+"Your camera roll is now 40% inspiration pictures.",
+"Nobody is ready. Everyone is fine. The chunni will be pinned.",
+"'Small function' is a phrase that means nothing.",
+"The seating chart is peace talks with better snacks.",
+"If the caterer says 'trust me', check the paneer.",
+"Every wedding has one crisis at 2 p.m. Pack snacks.",
+"Comfortable shoes are a personality now.",
+"Your outfit will be gorgeous. Your feet will file a complaint.",
+"The invitation went through more edits than a constitution.",
+"Getting ready takes four hours. The photos take four minutes.",
+"Someone will ask 'when is the food?' before the ceremony starts.",
+"Nobody remembers the centrepieces. Everyone remembers the dance floor.",
+"The group chat is your friend and your enemy.",
+"Safety pins: the real MVP of every wedding.",
+"At least one dramatic entrance is required. Check the lighting.",
+"Tissue budget: higher than you think.",
+"The photographer wants 'just one more' photo. It will be forty.",
+"Makeup trials: because your face deserves a rehearsal.",
+"The playlist has been approved by seven people and no one agrees.",
+"Ask the DJ nicely. Tip the DJ better.",
+"Wedding rule: eat before the pictures, not after.",
+"Every wedding has a cousin who takes the dance floor personally.",
+"The baraat will start late. It's tradition. Embrace it.",
+"The dhol player's energy level: unreasonable. Match it.",
+"Bring extra chargers. Everyone will need one.",
+"Guest count: a suggestion until the day itself.",
+"The chooda ceremony: shiny bangles, shinier memories.",
+/* Family */
+"An auntie somewhere is already updating the family WhatsApp group.",
+"Your relatives have been 'just checking' for six months.",
+"Expect 47 people to tell your single cousin 'you're next.'",
+"Every family has a 'that uncle.' He will make a speech.",
+"Mom's schedule for the day: hosting, crying, criticising, hosting.",
+"Dad will pretend not to cry. He'll cry. Bring napkins.",
+"Nani's blessings are more powerful than any planner.",
+"Aunties will judge the food. Aunties will finish the food.",
+"Someone will ask about kids. Smile. Change the subject.",
+"The family group chat has 140 unread messages. Again.",
+"The cousins have formed a dance committee. Do not interfere.",
+"The aunties' whispers will be the actual soundtrack.",
+"Someone will gift you a steel container. It will be perfect.",
+"Every family gathering runs on tea, snacks, and unsolicited advice.",
+"Your brother will say something embarrassing. Prepare.",
+"Everyone claims to be 'helping.' Nobody knows where anything is.",
+"The elders' opinion on your outfit: loud. The outfit: flawless.",
+"Family will arrive early and stay for the leftovers.",
+"Somebody's kid will steal the show. Let them.",
+"The aunties have already picked your children's names.",
+"You cannot control how loud the family is. Stay calm.",
+"The full-family photo takes 40 minutes and is still missing one uncle.",
+"Every family has someone who says 'five minutes' from home.",
+"'Log kya kahenge' will be quoted at least twice.",
+"Someone will say you look thinner. Take the compliment.",
+"'We're on our way' means they haven't left yet.",
+"Your mother has a plan B, C, and D for everything.",
+"The best speeches come from uncles holding a microphone.",
+"Family chat: 'Who's bringing what?' Nobody knows. Everyone brings sweets.",
+"The mama-and-chacha entrance team is rehearsing. Brace yourself.",
+"The relatives will inspect the food. The food will pass. Barely.",
+"Jaggo night: aunties, noise, and the good kind of chaos.",
+"Milni: watch the uncles hug awkwardly over a garland.",
+"Jutti chupai: the sisters drive a hard bargain.",
+"Kaleeray: pretty, jingly, and dangerous near the groom's head.",
+/* Marriage */
+"Marriage tip: you will lose every argument about the thermostat.",
+"Soon, someone will steal your blanket professionally.",
+"Marriage is 10% romance and 90% 'did you lock the door?'",
+"You'll share a Netflix account. Brace for the Continue Watching drama.",
+"Someone else will now witness your snack hoarding.",
+"You will learn the sacred art of 'yes, dear.'",
+"Marriage: two people, one bed, zero blankets.",
+"Get ready to argue about the dishwasher with love.",
+"Soon: shared calendars, shared groceries, shared blame.",
+"Now someone knows all your embarrassing stories. Forever.",
+"Coordinating outfits: optional. Coordinating grocery lists: mandatory.",
+"Every home has one person who never finds things. Every home.",
+"You'll know it's real when you split the last laddoo.",
+"The most romantic thing is a partner who takes out the trash.",
+"A lifetime of inside jokes. And outside ones too.",
+"Marriage is knowing exactly how they like their chai.",
+"Somebody will always leave the lights on. It's going to be you.",
+"You get a lifelong teammate in the chores lottery.",
+"Soon, 'we need to talk' will mean 'what's for dinner?'",
+"Prepare for the lifelong debate: how to fold towels.",
+"Your love language now includes 'please pick up the milk.'",
+"Married-life hack: never go to bed angry. Or hungry.",
+"In sickness and in health... and in traffic.",
+"Home is wherever your snacks and your person are.",
+"Future goals: one joint bank account and one shared cushion.",
+"Roommate upgrade incoming: now with better cuddles.",
+"You'll be each other's emergency contact. Sleepy and dramatic.",
+"Somebody will always claim the better side of the bed.",
+"You'll learn each other's snoring pattern. Sleep well.",
+"Every couple has a look that means 'let's leave.'",
+"Nobody warned you about the tea-to-sugar negotiations.",
+"The way they say your name will still feel like home.",
+"Marriage is teamwork. Weddings are marathon teamwork.",
+/* Punjabi flavour */
+"Bhangra warm-up: shoulders first, dignity later.",
+"The dhol beats have been rehearsed. The neighbours have not.",
+"Laddoos: the official currency of the wedding.",
+"The baraat horse is nervous. So is the groom.",
+"Sehra on, nerves off.",
+"Chunni pinned? Then it's official.",
+"The sangeet will have six choreographed dances and zero on beat.",
+"Phulkari, paranda, and a whole lot of shine.",
+"Roka, ring, and roaring relatives.",
+"If the dhol starts, you dance. Those are the rules.",
+"Chai first, then chaos.",
+"Mehndi smells like earth and gossip.",
+"Butter chicken has entered the chat.",
+"Butter yellow: the colour of joy and of paneer's confidence.",
+"Someone will lift the groom. Someone will pull a back muscle.",
+"Vyah is Punjabi for wedding. Chaos is Punjabi for planning.",
+"90% of Punjabi wedding planning happens over parathas.",
+"There will be dancing. You may need a chiropractor.",
+"Punjabi wedding maths: 200 invites means 400 guests.",
+"'Starts at 6' means 'starts at 9.'",
+"The turban will be tied by a cousin who takes it very seriously.",
+"Somebody's uncle will do the bottle dance. Let him have this.",
+"The paranda swings, the heart sings.",
+"The cousins will take over the DJ booth. Don't fight it.",
+"A Mughal garden, a Punjabi heart, and a Pakistani pinch of drama.",
+"Tikka, jhumkas, and enough sparkle to be seen from space.",
+"Ghungroo on the feet, ghee on the plate.",
+"If it isn't loud, is it even a wedding?",
+"Wedding fashion rule: if it sparkles, it stays.",
+"Your jewellery box just got a promotion.",
+"Gajras smell like romance and long photo sessions.",
+"Nobody sleeps the night before. Everybody looks great the next day.",
+"The band baaja will be louder than your thoughts.",
+"Doli or no doli: the tears will come.",
+"Bring tissues, bring appetite, bring dancing shoes.",
+/* General wedding humour */
+"Days remaining: fewer than yesterday. The maths checks out.",
+"The date isn't moving. You are. Toward it.",
+"Enough days to panic, not enough to procrastinate.",
+"Keep calm. The florist knows what she's doing.",
+"You'll sleep well after the wedding. Not before.",
+"This is the part of the movie where the training montage plays.",
+"Say yes to the dress. Say no to more revisions.",
+"Every checklist item completed makes one auntie happier.",
+"Today's task: breathe. Tomorrow's task: also breathe.",
+"Someone somewhere just bought the wrong shade of pink.",
+"There is never a wrong time to eat a laddoo.",
+"Your future self will laugh about all this stress.",
+"Plans change. Love doesn't. Also the caterer changes.",
+"Look at you: engaged, organised, and mildly overwhelmed.",
+"Somewhere, the perfect dupatta is waiting for you.",
+"Hydrate. Moisturise. Panic later.",
+"It'll all come together. It always does, around 4 a.m.",
+"You are allowed to cry. You are allowed to eat cake.",
+"Take a deep breath. Then take another laddoo.",
+"Butter, ghee, love: the real wedding ingredients.",
+"You'll never be this engaged again. Enjoy the ring.",
+"Some days are for planning. Some days are for naps. Both count.",
+"The goal is a marriage, not a perfect Pinterest board.",
+"Eat the cake, skip the drama.",
+"Weddings are 5% ceremony, 95% waiting for food.",
+"A wedding without one last-minute panic is just a party.",
+"Buy the shoes you can dance in. Then buy a spare pair.",
+"Be nice to the vendors. They know where the bodies are buried.",
+"You'll forget one thing. Nobody else will notice.",
+"The videographer already has your best ugly-cry angle.",
+"Nothing says romance like a shared checklist.",
+"Two families, one marriage, forty-seven group chats.",
+"Guests will dance like nobody is watching. They are filming.",
+"Your speech will be short. Your uncle's will not.",
+"Every bride is stunning. Every groom is mildly confused.",
+"Save the date. Save the leftovers.",
+"Everything looks better after the second dessert.",
+"Stay hydrated, stay dramatic.",
+"Ask for help. Then delegate the help.",
+"Your best accessory is a good sense of humour.",
+"Pinterest lied. Take the win anyway.",
+"At least one relative will cry before the ceremony. It could be you.",
+"Cheers to being tired, happy, and slightly overdressed.",
+"Someone will say 'you're glowing.' It's the highlighter.",
+"The wedding will be perfect. Even the bits that go wrong.",
+"Take a moment. Look around. Then take a photo.",
+"Love is patient. Caterers are not.",
+"When in doubt, add more sparkle."
+];
+
+/* One note per calendar day, in order, starting Sept 20, 2026 */
+function dailyNote() {
+  const t = new Date();
+  const day = Math.floor((Date.UTC(t.getFullYear(), t.getMonth(), t.getDate()) - Date.UTC(2026, 8, 20)) / 864e5);
+  return notes[((day % notes.length) + notes.length) % notes.length];
+}
+$("dailyNote").textContent = dailyNote();
+
+function tick() {
+  const diff = weddingDate.getTime() - Date.now();
+  if (diff <= 0) {
+    $("days").textContent = "000";
+    ["hours", "minutes", "seconds"].forEach(i => $(i).textContent = "00");
+    $("dailyNote").textContent = "Today is the day. Go get married. ♡";
+    return;
+  }
+  const s = Math.floor(diff / 1000);
+  $("days").textContent = pad(Math.floor(s / 86400), 3);
+  $("hours").textContent = pad(Math.floor((s % 86400) / 3600));
+  $("minutes").textContent = pad(Math.floor((s % 3600) / 60));
+  $("seconds").textContent = pad(s % 60);
+}
+tick();
+setInterval(tick, 1000);
+
+/* Blessings */
+const blessings = [
+  "See you at the mandap. ♡",
+  "The DJ has been warned.",
+  "Auntie approves. Barely.",
+  "Please pin your chunni.",
+  "The laddoos are safe. For now.",
+  "Wishing you a lifetime of shared blankets.",
+  "Blessings: 100. Snacks: 200.",
+  "Somebody's uncle is about to make a speech."
+];
+let timer;
+$("heart").addEventListener("click", () => {
+  const t = $("toast");
+  t.textContent = blessings[Math.floor(Math.random() * blessings.length)];
+  t.classList.add("show");
+  clearTimeout(timer);
+  timer = setTimeout(() => t.classList.remove("show"), 2400);
+});
+</script>
+</body>
+</html>
