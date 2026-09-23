@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f4ee">
+
+<title>Countdown</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Italiana&family=Oooh+Baby&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(184, 154, 116, 0.08), transparent 28%),
+        radial-gradient(circle at 85% 85%, rgba(30, 52, 77, 0.08), transparent 30%),
+        #f7f4ee;
+    color: #18283b;
+    font-family: "Playfair Display", serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+/* subtle paper texture */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(24, 40, 59, 0.025) 4px
+        );
+}
+
+.page {
+    width: min(920px, 100%);
+    min-height: 100vh;
+    padding: 48px 24px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+/* little decorative corners */
+.corner {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    opacity: 0.35;
+}
+
+.corner::before,
+.corner::after {
+    content: "";
+    position: absolute;
+    background: #b99b76;
+}
+
+.corner::before {
+    width: 1px;
+    height: 70px;
+}
+
+.corner::after {
+    width: 70px;
+    height: 1px;
+}
+
+.corner.tl {
+    top: 25px;
+    left: 25px;
+}
+
+.corner.tr {
+    top: 25px;
+    right: 25px;
+    transform: rotate(90deg);
+}
+
+.corner.bl {
+    bottom: 25px;
+    left: 25px;
+    transform: rotate(-90deg);
+}
+
+.corner.br {
+    bottom: 25px;
+    right: 25px;
+    transform: rotate(180deg);
+}
+
+.eyebrow {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    opacity: 0.62;
+}
+
+.names {
+    font-family: "Italiana", serif;
+    font-size: clamp(48px, 10vw, 92px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.ampersand {
+    font-family: "Oooh Baby", cursive;
+    font-size: 0.48em;
+    color: #a88b68;
+    display: inline-block;
+    margin: 0 7px;
+    transform: translateY(-8px);
+}
+
+.date {
+    margin-top: 24px;
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.65;
+}
+
+.divider {
+    width: 70px;
+    height: 1px;
+    background: #b99b76;
+    margin: 34px auto;
+    opacity: 0.65;
+}
+
+/* COUNTDOWN */
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: min(700px, 100%);
+    margin: 0 auto;
+}
+
+.unit {
+    padding: 24px 8px 20px;
+    border-top: 1px solid rgba(24, 40, 59, 0.2);
+    border-bottom: 1px solid rgba(24, 40, 59, 0.2);
+}
+
+.number {
+    display: block;
+    font-family: "Italiana", serif;
+    font-size: clamp(38px, 7vw, 68px);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.label {
+    display: block;
+    margin-top: 10px;
+    font-family: "DM Mono", monospace;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.58;
+}
+
+/* progress */
+.progress-wrap {
+    width: min(520px, 80%);
+    margin: 36px auto 0;
+}
+
+.progress-line {
+    width: 100%;
+    height: 1px;
+    background: rgba(24, 40, 59, 0.14);
+    position: relative;
+}
+
+.progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 1px;
+    width: 0%;
+    background: #a88b68;
+    transition: width 0.8s ease;
+}
+
+.progress-text {
+    margin-top: 10px;
+    font-family: "DM Mono", monospace;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    opacity: 0.45;
+}
+
+/* DAILY NOTE */
+.note-area {
+    margin-top: 44px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-label {
+    font-family: "DM Mono", monospace;
+    font-size: 8px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.42;
+    margin-bottom: 14px;
+}
+
+.daily-note {
+    max-width: 620px;
+    margin: 0 auto;
+    font-family: "Oooh Baby", cursive;
+    font-size: clamp(23px, 4vw, 34px);
+    line-height: 1.25;
+    color: #263a50;
+    transition: opacity 0.35s ease;
+}
+
+.footer {
+    margin-top: 42px;
+    font-family: "DM Mono", monospace;
+    font-size: 7px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.35;
+}
+
+/* HEART */
+.heart {
+    margin: 28px auto 0;
+    width: 17px;
+    height: 17px;
+    position: relative;
+    transform: rotate(-45deg);
+    cursor: pointer;
+    opacity: 0.55;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.heart:hover {
+    transform: rotate(-45deg) scale(1.15);
+    opacity: 0.9;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    background: #a88b68;
+    border-radius: 50%;
+}
+
+.heart {
+    background: #a88b68;
+}
+
+.heart::before {
+    top: -8px;
+    left: 0;
+}
+
+.heart::after {
+    left: 8px;
+    top: 0;
+}
+
+/* little surprise */
+.sparkle {
+    position: fixed;
+    pointer-events: none;
+    font-family: "Oooh Baby", cursive;
+    font-size: 20px;
+    color: #a88b68;
+    animation: floatAway 1.4s ease-out forwards;
+}
+
+@keyframes floatAway {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-90px) scale(1.5);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .page {
+        padding: 38px 18px 30px;
+    }
+
+    .corner {
+        width: 42px;
+        height: 42px;
+    }
+
+    .corner::before {
+        height: 42px;
+    }
+
+    .corner::after {
+        width: 42px;
+    }
+
+    .corner.tl {
+        top: 18px;
+        left: 18px;
+    }
+
+    .corner.tr {
+        top: 18px;
+        right: 18px;
+    }
+
+    .corner.bl {
+        bottom: 18px;
+        left: 18px;
+    }
+
+    .corner.br {
+        bottom: 18px;
+        right: 18px;
+    }
+
+    .countdown {
+        gap: 5px;
+    }
+
+    .unit {
+        padding: 18px 3px;
+    }
+
+    .number {
+        font-size: clamp(30px, 10vw, 48px);
+    }
+
+    .label {
+        font-size: 7px;
+        letter-spacing: 0.12em;
+    }
+
+    .divider {
+        margin: 28px auto;
+    }
+
+    .note-area {
+        margin-top: 34px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .progress-fill,
+    .daily-note,
+    .heart {
+        transition: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
+    <div class="eyebrow">The countdown</div>
+
+    <h1 class="names">
+        Rajdeep
+        <span class="ampersand">&amp;</span>
+        Inderjeet
+    </h1>
+
+    <div class="date">
+        May 02 · 2027
+    </div>
+
+    <div class="divider"></div>
+
+    <section class="countdown" aria-label="Wedding countdown">
+
+        <div class="unit">
+            <span class="number" id="days">000</span>
+            <span class="label">Days</span>
+        </div>
+
+        <div class="unit">
+            <span class="number" id="hours">00</span>
+            <span class="label">Hours</span>
+        </div>
+
+        <div class="unit">
+            <span class="number" id="minutes">00</span>
+            <span class="label">Minutes</span>
+        </div>
+
+        <div class="unit">
+            <span class="number" id="seconds">00</span>
+            <span class="label">Seconds</span>
+        </div>
+
+    </section>
+
+    <div class="progress-wrap">
+        <div class="progress-line">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <div class="progress-text" id="progressText">
+            counting down to forever
+        </div>
+    </div>
+
+    <section class="note-area">
+
+        <div class="note-label">A little note for today</div>
+
+        <div class="daily-note" id="dailyNote">
+            Every day is one day closer to you.
+        </div>
+
+        <div class="heart" id="heart" aria-label="little surprise"></div>
+
+    </section>
+
+    <div class="footer">
+        Countdown · 02.05.2027
+    </div>
+
+</main>
+
+<script>
+
+/* =====================================================
+   WEDDING COUNTDOWN
+   May 02, 2027
+   ===================================================== */
+
+/*
+   IMPORTANT:
+   The wedding date is set to May 2, 2027 at 12:00 AM
+   in the user's local time.
+
+   This avoids the UTC/Safari/iPhone issue from the
+   previous version.
+*/
+
+const weddingDate = new Date(2027, 4, 2, 0, 0, 0);
+
+
+/* =====================================================
+   DAILY NOTES
+   One note for every day of the countdown.
+
+   The system automatically chooses the note based on
+   the number of days remaining.
+   ===================================================== */
+
+const notes = [
+
+    "Every day is one day closer to you.",
+
+    "Somewhere between now and forever, there is us.",
+
+    "A little closer to the day we get to call ours.",
+
+    "The best things are worth counting down to.",
+
+    "One less sleep until our forever begins.",
+
+    "Today feels a little more like wedding season.",
+
+    "Saving all my favourite moments for you.",
+
+    "Our story is getting closer to its next chapter.",
+
+    "A thousand little moments are leading us here.",
+
+    "One day closer to standing beside you.",
+
+    "The countdown is just another way of saying I love you.",
+
+    "Soon, this date won't just be on a screen.",
+
+    "Our forever is slowly becoming a date on the calendar.",
+
+    "One day closer to the beginning of something beautiful.",
+
+    "The days are passing, but this feeling isn't.",
+
+    "Counting days, collecting dreams.",
+
+    "Soon we'll look back at this countdown and smile.",
+
+    "There is a whole forever waiting for us.",
+
+    "The closer it gets, the more real it feels.",
+
+    "Today, tomorrow, and every day after — you.",
+
+    "A little patience for a lifetime of memories.",
+
+    "Our day is quietly making its way toward us.",
+
+    "I can't wait for the day we stop counting.",
+
+    "One more page in the calendar turned.",
+
+    "The date is getting closer. So are we.",
+
+    "Forever sounds better when it starts with you.",
+
+    "Our little countdown is becoming our big day.",
+
+    "Soon the waiting becomes the remembering.",
+
+    "Every passing day carries us closer.",
+
+    "I hope you know how excited I am for us.",
+
+    "A future with you is worth every second.",
+
+    "The days may be numbers, but the feeling is everything.",
+
+    "Our wedding day is waiting quietly in the distance.",
+
+    "One day closer to all the little things we've imagined.",
+
+    "There is magic in knowing what we're waiting for.",
+
+    "Soon enough, we'll be living the day we've dreamed about.",
+
+    "Another day gone. Another day closer.",
+
+    "If I could skip to one day, it would be this one.",
+
+    "The countdown keeps moving, and so does our story.",
+
+    "A date, a promise, a lifetime.",
+
+    "Soon we'll trade the countdown for memories.",
+
+    "I can't wait to see what forever looks like with you.",
+
+    "The little details will matter because they're ours.",
+
+    "One more day closer to saying yes to forever.",
+
+    "Our day is coming.",
+
+    "Some days are ordinary. This countdown is not.",
+
+    "We're getting there, one beautiful day at a time.",
+
+    "A little closer to the beginning of forever.",
+
+    "The calendar knows what we're waiting for.",
+
+    "One day we'll wish we could come back to this waiting.",
+
+    "Today is part of the story too.",
+
+    "Every second is bringing us somewhere special.",
+
+    "The wait is becoming part of the memory.",
+
+    "Our forever is getting closer.",
+
+    "Soon this will all be real.",
+
+    "I would wait all over again for you.",
+
+    "Another sunrise closer to our day.",
+
+    "Another sunset closer to forever.",
+
+    "The closer we get, the sweeter the waiting feels.",
+
+    "There are so many memories still waiting to happen.",
+
+    "Our next chapter is almost here.",
+
+    "The days are fewer. The excitement is bigger.",
+
+    "A little reminder: we're really doing this.",
+
+    "Soon we'll be celebrating the love that brought us here.",
+
+    "Our day is on its way.",
+
+    "I can't wait for the ordinary days after the extraordinary one.",
+
+    "One day closer to waking up as newlyweds.",
+
+    "Forever is starting to feel very close.",
+
+    "This countdown has our names written all over it.",
+
+    "The waiting has its own kind of sweetness.",
+
+    "Soon we'll have a wedding day story to tell.",
+
+    "Every day closer feels a little more exciting.",
+
+    "The best part is knowing who I'm waiting for.",
+
+    "Our day will come. And it will be ours.",
+
+    "Almost there, love.",
+
+    "Soon the flowers, music, laughter and us.",
+
+    "A little closer to the moment everything becomes real.",
+
+    "We're almost at the part where the countdown stops.",
+
+    "One more day closer to forever.",
+
+    "The end of the countdown is the beginning of everything.",
+
+    "Soon we'll be standing in the middle of our own story.",
+
+    "Almost time.",
+
+    "The day we've been waiting for is nearly here.",
+
+    "Tomorrow is getting closer.",
+
+    "Our forever is almost ready to begin.",
+
+    "One more sunrise.",
+
+    "One more sleep.",
+
+    "Almost our day.",
+
+    "This is it. We're nearly there.",
+
+    "Tomorrow.",
+
+    "Today is the last day of waiting.",
+
+    "May 02, 2027 — our day.",
+
+    "And suddenly, forever begins."
+
+];
+
+
+/* =====================================================
+   COUNTDOWN ENGINE
+   ===================================================== */
+
+function updateCountdown() {
+
+    const now = new Date();
+    const difference = weddingDate.getTime() - now.getTime();
+
+    if (difference <= 0) {
+
+        document.getElementById("days").textContent = "000";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+
+        document.getElementById("progress").style.width = "100%";
+
+        document.getElementById("progressText").textContent =
+            "today is the day";
+
+        document.getElementById("dailyNote").textContent =
+            "And suddenly, forever begins.";
+
+        return;
+    }
+
+    const totalSeconds = Math.floor(difference / 1000);
+
+    const days = Math.floor(totalSeconds / 86400);
+
+    const hours = Math.floor(
+        (totalSeconds % 86400) / 3600
+    );
+
+    const minutes = Math.floor(
+        (totalSeconds % 3600) / 60
+    );
+
+    const seconds = totalSeconds % 60;
+
+    document.getElementById("days").textContent =
+        String(days).padStart(3, "0");
+
+    document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+    document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+    document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+
+
+    /* Progress */
+
+    const startDate = new Date(2026, 8, 23, 0, 0, 0);
+
+    const totalDuration =
+        weddingDate.getTime() - startDate.getTime();
+
+    const elapsed =
+        now.getTime() - startDate.getTime();
+
+    let percentage =
+        (elapsed / totalDuration) * 100;
+
+    percentage = Math.max(0, Math.min(100, percentage));
+
+    document.getElementById("progress").style.width =
+        percentage + "%";
+
+
+    document.getElementById("progressText").textContent =
+        Math.round(percentage) + "% of the way there";
+}
+
+
+/* =====================================================
+   DAILY NOTE ENGINE
+
+   The note changes according to the actual calendar day.
+   It does NOT change every second and it does NOT repeat
+   every 14 days.
+   ===================================================== */
+
+function updateDailyNote() {
+
+    const now = new Date();
+
+    const today = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+    );
+
+    const weddingDay = new Date(
+        weddingDate.getFullYear(),
+        weddingDate.getMonth(),
+        weddingDate.getDate()
+    );
+
+    const millisecondsPerDay = 86400000;
+
+    const daysRemaining = Math.ceil(
+        (weddingDay - today) / millisecondsPerDay
+    );
+
+    /*
+       Find a note based on days remaining.
+
+       When there are more days than notes, the notes
+       are distributed across the countdown rather than
+       repeating on a two-week cycle.
+    */
+
+    let index;
+
+    if (daysRemaining >= 0) {
+
+        if (daysRemaining < notes.length) {
+            index = notes.length - 1 - daysRemaining;
+        } else {
+
+            /*
+               For the earlier part of the countdown,
+               select a note deterministically based on
+               the calendar date.
+            */
+
+            const dateNumber =
+                Math.floor(today.getTime() / millisecondsPerDay);
+
+            index =
+                Math.abs(dateNumber) % notes.length;
+        }
+
+    } else {
+        index = notes.length - 1;
+    }
+
+    index = Math.max(
+        0,
+        Math.min(notes.length - 1, index)
+    );
+
+    const noteElement =
+        document.getElementById("dailyNote");
+
+    noteElement.style.opacity = "0";
+
+    setTimeout(() => {
+
+        noteElement.textContent = notes[index];
+
+        noteElement.style.opacity = "1";
+
+    }, 180);
+}
+
+
+/* =====================================================
+   LITTLE HEART SURPRISE
+   ===================================================== */
+
+document.getElementById("heart").addEventListener(
+    "click",
+    function(event) {
+
+        for (let i = 0; i < 7; i++) {
+
+            const sparkle =
+                document.createElement("div");
+
+            sparkle.className = "sparkle";
+
+            sparkle.textContent =
+                i % 2 === 0 ? "♡" : "✦";
+
+            sparkle.style.left =
+                (event.clientX + (Math.random() * 80 - 40)) + "px";
+
+            sparkle.style.top =
+                (event.clientY + (Math.random() * 40 - 20)) + "px";
+
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1500);
+        }
+    }
+);
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+updateCountdown();
+updateDailyNote();
+
+setInterval(updateCountdown, 1000);
+
+/*
+   Check the date every minute so the daily message
+   changes automatically after midnight.
+*/
+setInterval(updateDailyNote, 60000);
+
+</script>
+
+</body>
+</html>
