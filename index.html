@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Rajdeep &amp; Inderjeet · May 2, 2027</title>
+<meta name="description" content="Counting down to us.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#5a1f27">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#5a1f27;--cream:#f2e5b9;--pale:#f6ecc8}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;min-height:100vh;min-height:100dvh;color:var(--cream);overflow-x:hidden;font-family:"IM Fell English",Georgia,serif;
+  background:radial-gradient(ellipse at 50% 35%,#642530 0,#5a1f27 55%,#4a1820 100%) fixed}
+#sparkle{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.page{position:relative;z-index:1;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;
+  padding:calc(32px + env(safe-area-inset-top)) 18px calc(40px + env(safe-area-inset-bottom))}
+.wrap{width:min(540px,100%);margin:auto}
+
+/* Victorian frame */
+.lovewrap{position:relative;text-align:center;padding:46px 12px 44px;border:4px double rgba(242,229,185,.55);outline:1px solid rgba(242,229,185,.22);outline-offset:6px;
+  border-radius:3px;background:rgba(38,7,13,.3);box-shadow:0 12px 44px rgba(0,0,0,.35),inset 0 0 70px rgba(0,0,0,.25);animation:fade 1.4s ease both}
+.cn{position:absolute;font-size:18px;line-height:1;color:var(--cream);opacity:.85}
+.cn.a{top:9px;left:10px}.cn.b{top:9px;right:10px;transform:scaleX(-1)}
+.cn.c{bottom:9px;left:10px;transform:scaleY(-1)}.cn.d{bottom:9px;right:10px;transform:scale(-1)}
+.inv{margin-bottom:6px;font-family:"IM Fell English SC",serif;font-size:clamp(10px,3vw,13px);letter-spacing:.16em;padding:0 8px;text-wrap:balance;opacity:.9}
+
+/* Lace heart */
+.hl{position:relative;width:min(100%,440px);margin:0 auto}
+.hl svg{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 16px rgba(0,0,0,.35))}
+.ht{position:absolute;left:50%;top:52%;width:64%;transform:translate(-50%,-50%);color:var(--pale)}
+.hn{margin:0;font-family:"Playfair Display",serif;font-style:italic;font-weight:400;font-size:clamp(24px,8vw,38px);line-height:1}
+.hn span{font-family:"Pinyon Script",cursive;font-style:normal;font-weight:400;font-size:.9em;display:inline-block;margin:0 .05em}
+.hd{margin-top:0;font-style:italic;font-size:clamp(17px,5vw,20px);letter-spacing:.04em}
+.tag{margin:6px 0 0;font-family:"Pinyon Script",cursive;font-size:clamp(26px,7.5vw,34px)}
+
+/* Countdown */
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);margin:16px 0 4px;border-top:1px solid rgba(242,229,185,.45);border-bottom:1px solid rgba(242,229,185,.45)}
+.unit{text-align:center;padding:14px 0 10px;position:relative}
+.unit+.unit::before{content:"";position:absolute;left:0;top:24%;height:52%;border-left:1px dotted rgba(242,229,185,.5)}
+.number{font-family:"Playfair Display",serif;font-weight:400;font-size:clamp(24px,7.4vw,40px);line-height:1;color:var(--pale)}
+.label{margin-top:6px;font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.1em;opacity:.85}
+
+/* Note */
+.ps{margin-top:22px}
+.ps::before{content:"\2726  \2766  \2726";display:block;margin-bottom:10px;letter-spacing:.4em;font-size:13px;opacity:.8}
+.ps h2{margin:0 0 8px;font-family:"IM Fell English SC",serif;font-weight:400;font-size:12px;letter-spacing:.3em;opacity:.75}
+.note{font-style:italic;font-size:clamp(21px,5.8vw,26px);line-height:1.3;color:var(--pale);min-height:2.7em;display:flex;align-items:center;justify-content:center}
+
+/* Love letter + sign-off */
+.sealwrap{margin-top:16px}
+.seal{width:96px;height:64px;border:0;background:none;cursor:pointer;color:var(--cream);padding:0;-webkit-tap-highlight-color:transparent;transition:transform .2s}
+.seal svg{width:100%;height:100%}
+.seal:active{transform:scale(.93) rotate(-3deg)}
+.seal:focus-visible{outline:1px solid var(--cream);outline-offset:4px}
+.yours{margin-top:4px;font-family:"Pinyon Script",cursive;font-size:26px}
+.toast{position:fixed;z-index:5;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,14px);width:max-content;max-width:88vw;text-align:center;
+  background:var(--cream);color:#4a1820;padding:11px 18px;border-radius:6px;font-style:italic;font-size:18px;opacity:0;pointer-events:none;transition:.35s ease}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:360px){.label{font-size:9px;letter-spacing:.04em}}
+</style>
+</head>
+<body>
+<canvas id="sparkle" aria-hidden="true"></canvas>
+<div class="page"><div class="wrap">
+<article class="lovewrap">
+  <span class="cn a" aria-hidden="true">❦</span><span class="cn b" aria-hidden="true">❦</span><span class="cn c" aria-hidden="true">❦</span><span class="cn d" aria-hidden="true">❦</span>
+  <div class="inv">Two Hearts Request the Pleasure</div>
+
+  <div class="hl">
+    <svg viewBox="-12 -10 224 200" aria-hidden="true">
+      <defs>
+        <pattern id="mesh" width="5" height="5" patternUnits="userSpaceOnUse">
+          <path d="M0 0L5 5M5 0L0 5" stroke="#f2e5b9" stroke-opacity=".3" stroke-width=".6"/>
+        </pattern>
+      </defs>
+      <g transform="translate(100 92) scale(1.03) translate(-100 -92)">
+        <path d="M100 170C20 110-5 55 35 25 65 3 92 22 100 45 108 22 135 3 165 25 205 55 180 110 100 170Z" fill="#f2e5b9" fill-opacity=".14"/>
+        <path d="M100 170C20 110-5 55 35 25 65 3 92 22 100 45 108 22 135 3 165 25 205 55 180 110 100 170Z" fill="none" stroke="#f2e5b9" stroke-width="11" stroke-dasharray="0 7" stroke-linecap="round" stroke-opacity=".95"/>
+        <path d="M100 170C20 110-5 55 35 25 65 3 92 22 100 45 108 22 135 3 165 25 205 55 180 110 100 170Z" fill="none" stroke="#f2e5b9" stroke-width="3" stroke-opacity=".9"/>
+      </g>
+      <g transform="translate(100 92) scale(.8) translate(-100 -92)">
+        <path d="M100 170C20 110-5 55 35 25 65 3 92 22 100 45 108 22 135 3 165 25 205 55 180 110 100 170Z" fill="url(#mesh)" stroke="#f2e5b9" stroke-width="3.5"/>
+        <path d="M100 170C20 110-5 55 35 25 65 3 92 22 100 45 108 22 135 3 165 25 205 55 180 110 100 170Z" fill="none" stroke="#f2e5b9" stroke-width="7" stroke-dasharray="0 6" stroke-linecap="round" stroke-opacity=".7" transform="translate(100 92) scale(.9) translate(-100 -92)"/>
+      </g>
+    </svg>
+    <div class="ht"><h1 class="hn">Rajdeep <span>&amp;</span><br>Inderjeet</h1></div>
+  </div>
+
+  <div class="hd">The Second of May, 2027</div>
+  <p class="tag">Counting down to us</p>
+
+  <section class="countdown" aria-label="Wedding countdown">
+    <div class="unit"><div class="number" id="days">000</div><div class="label">Days</div></div>
+    <div class="unit"><div class="number" id="hours">00</div><div class="label">Hours</div></div>
+    <div class="unit"><div class="number" id="minutes">00</div><div class="label">Minutes</div></div>
+    <div class="unit"><div class="number" id="seconds">00</div><div class="label">Seconds</div></div>
+  </section>
+
+  <section class="ps">
+    <h2>Today's note</h2>
+    <div class="note" id="dailyNote"></div>
+  </section>
+
+  <div class="sealwrap">
+    <button class="seal" id="heart" type="button" aria-label="Send a little love letter">
+      <svg viewBox="0 0 90 60" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M31 30C22 14 8 12 3 16c3 8 12 14 26 14"/><path d="M59 30C68 14 82 12 87 16c-3 8-12 14-26 14"/>
+        <rect x="29" y="24" width="32" height="22" rx="2"/><path d="M29 25l16 12 16-12"/><path d="M45 15c-2-3-6-1-4 2l4 4 4-4c2-3-2-5-4-2Z"/>
+      </svg>
+    </button>
+    <div class="yours">Yours, always</div>
+  </div>
+</article>
+</div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* Wedding: May 2, 2027, 12:00 AM Eastern (EDT). Edit the date here. */
+const weddingDate = new Date("2027-05-02T00:00:00-04:00");
+const $ = id => document.getElementById(id);
+const pad = (n, l = 2) => String(n).padStart(l, "0");
+
+const notes = [
+"Three hours apart. Not for much longer.",
+"Soon, goodnight won't need Wi-Fi.",
+"Someday we'll argue about the thermostat in person. Can't wait.",
+"The Wi-Fi has carried us. We should thank it at the wedding.",
+"Airport hugs are good. Kitchen hugs will be better.",
+"We've mastered the 'wait, what time is it there?' maths.",
+"Soon nobody will say 'you're on mute.'",
+"Final season of long distance. No filler episodes.",
+"Every flight so far was training for this.",
+"Soon: leftovers I can actually steal.",
+"The 2 a.m. texts end. The 2 a.m. snoring begins.",
+"We survived time zones. Seating charts are nothing.",
+"Screen-share dinners turn into real dinners with real dishes.",
+"'Miss you' becomes 'pass the roti.'",
+"Soon 'see you next month' becomes 'see you in the kitchen.'",
+"Good morning, in person. Soon.",
+"Two provinces, one shared aunty opinion: we're too thin.",
+"The families' group chats have merged. There is no escape.",
+"Ontario winters and BC rain. We're weather-tested.",
+"Flight: five hours. Fighting over the AC: two minutes.",
+"You will lose every argument about the thermostat. So will I.",
+"Soon, someone will steal my blanket professionally.",
+"Marriage is 10% romance, 90% 'did you lock the door?'",
+"Brace for the Continue Watching drama.",
+"Now someone will witness my snack hoarding.",
+"Two people, one bed, zero blankets.",
+"We'll argue about the dishwasher with love.",
+"Shared calendars, shared groceries, shared blame.",
+"Now someone knows all my embarrassing stories. Forever.",
+"We'll know it's real when we split the last laddoo.",
+"The most romantic thing: someone who takes out the trash.",
+"Marriage is knowing exactly how you take your chai.",
+"Somebody will always leave the lights on. It's me.",
+"'We need to talk' will mean 'what's for dinner?'",
+"The great towel-folding debate begins.",
+"Never go to bed angry. Or hungry.",
+"In sickness, in health, and in traffic.",
+"Home is wherever our snacks and my person are.",
+"One joint account, one shared cushion.",
+"Roommate upgrade: now with better cuddles.",
+"Somebody will claim the better side of the bed.",
+"I'm about to learn your snoring pattern.",
+"Every couple has a look that means 'let's leave.'",
+"The way you say my name still feels like home.",
+"Marriage means agreeing how many rotis is 'enough.' It's never enough.",
+"The guest list is a living document and a battlefield.",
+"The wedding budget is where numbers go to be humbled.",
+"The mood board is on revision sixteen.",
+"Our camera roll is 40% inspiration pictures.",
+"Lehenga fittings count as cardio.",
+"The seating chart is peace talks with better snacks.",
+"Getting ready: four hours. Photos: four minutes.",
+"'Small function' is a phrase that means nothing.",
+"The DJ has been warned: no surprises, only bangers.",
+"Safety pins are the real MVP.",
+"The playlist has been approved by seven people and no one agrees.",
+"Nobody remembers the centrepieces. Everyone remembers the dance floor.",
+"Days left: enough to panic, not enough to procrastinate.",
+"Hydrate. Moisturise. Panic later.",
+"It will all come together around 4 a.m.",
+"We're allowed to cry. We're allowed to eat cake.",
+"The goal is a marriage, not a perfect Pinterest board.",
+"Weddings are 5% ceremony, 95% waiting for food.",
+"We will forget one thing. Nobody else will notice.",
+"Buy the shoes we can dance in. Then a spare pair.",
+"An auntie is already updating the family group chat.",
+"Somebody's uncle will make a speech. Bring napkins.",
+"Aunties will judge the food. Aunties will finish the food.",
+"Expect 47 people to tell a single cousin 'you're next.'",
+"Someone will say 'five minutes' from home. It'll be forty.",
+"The cousins have formed a dance committee. Do not interfere.",
+"Mom has a plan B, C and D for everything.",
+"The family photo takes 40 minutes and is still missing one uncle.",
+"Somebody will gift us a steel container. It will be perfect.",
+"Everyone will be 'helping.' Nobody will know where anything is.",
+"Bhangra warm-up: shoulders first, dignity later.",
+"If the dhol starts, we dance. Those are the rules.",
+"'Starts at 6' means 'starts at 9.'",
+"Vyah is Punjabi for wedding. Chaos is Punjabi for planning.",
+"Punjabi wedding maths: 200 invites means 400 guests.",
+"Laddoos are the official currency.",
+"Ghungroo on the feet, ghee on the plate.",
+"90% of wedding planning happens over parathas.",
+"Bejeweled is the dress code.",
+"Friendship bracelets for the bridal party: start stringing.",
+"Long story short: the venue is booked.",
+"The DJ will play 'Love Story.' Someone's uncle will pretend to know it.",
+"Getaway car: the honeymoon suitcase is 60% shoes.",
+"Eras Tour energy: three outfit changes and a lot of sparkle.",
+"Blank Space in the schedule? Fill it with naps.",
+"The Archer moment: aim the bouquet away from the aunties.",
+"Whisper 'You Belong With Me' at the first dance. Silently.",
+"Cardigan era: a cozy, slightly oversharing group chat.",
+"Every couple deserves a Midnights: snacks at 3 a.m.",
+"Paper rings for the kids' table. The real ring for us.",
+"Karma is a good caterer. Book early.",
+"New Romantics send flights, flowers, and a countdown page.",
+"Enchanted is what everyone will say about the venue."
+];
+
+const specials = {
+  100: "100 days to go. Triple digits, single-minded.",
+  89: "89 days to go. Taking it back to a very good year, numerically.",
+  22: "22 days to go. A very good number to be engaged in.",
+  13: "13 days to go. Lucky number, obviously.",
+  7: "One week to go. Start the Eras-level packing.",
+  1: "One day left. Long live the countdown.",
+  0: "Tomorrow is the day. You will not sleep. Naturally."
+};
+
+function dailyNote() {
+  const t = new Date();
+  const day = Math.floor((Date.UTC(t.getFullYear(), t.getMonth(), t.getDate()) - Date.UTC(2026, 8, 20)) / 864e5);
+  const left = Math.floor((weddingDate.getTime() - Date.now()) / 864e5);
+  if (specials[left]) return specials[left];
+  return notes[((day % notes.length) + notes.length) % notes.length];
+}
+$("dailyNote").textContent = dailyNote();
+
+function tick() {
+  const diff = weddingDate.getTime() - Date.now();
+  if (diff <= 0) {
+    $("days").textContent = "000";
+    ["hours", "minutes", "seconds"].forEach(i => $(i).textContent = "00");
+    $("dailyNote").textContent = "Today is the day. Go get married. ♡";
+    return;
+  }
+  const s = Math.floor(diff / 1000);
+  $("days").textContent = pad(Math.floor(s / 86400), 3);
+  $("hours").textContent = pad(Math.floor((s % 86400) / 3600));
+  $("minutes").textContent = pad(Math.floor((s % 3600) / 60));
+  $("seconds").textContent = pad(s % 60);
+}
+tick();
+setInterval(tick, 1000);
+
+const blessings = [
+  "See you at the wedding. ♡",
+  "Chak de phatte!",
+  "Auntie approves. Barely.",
+  "Please pin your chunni.",
+  "The laddoos are safe. For now.",
+  "Friendship bracelets are being made.",
+  "Ready for it? Not really. Ready anyway.",
+  "You two are the Love Story. The uncles are the plot twist.",
+  "Wear the comfy shoes. Trust us.",
+  "Sparkle level: Bejeweled.",
+  "Somebody's uncle is about to make a speech."
+];
+let timer;
+$("heart").addEventListener("click", () => {
+  const t = $("toast");
+  t.textContent = blessings[Math.floor(Math.random() * blessings.length)];
+  t.classList.add("show");
+  clearTimeout(timer);
+  timer = setTimeout(() => t.classList.remove("show"), 2400);
+});
+
+/* Glitter */
+(function () {
+  const cv = $("sparkle"), ctx = cv.getContext("2d");
+  const cols = ["#f2e5b9", "#fff3d6", "#f2e5b9", "#e9b8bd"];
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W, H, P = [];
+  function setup() {
+    const d = window.devicePixelRatio || 1;
+    W = innerWidth; H = innerHeight;
+    cv.width = W * d; cv.height = H * d;
+    ctx.setTransform(d, 0, 0, d, 0, 0);
+    P = [];
+    const n = Math.min(160, Math.round(W * H / 9000));
+    for (let i = 0; i < n; i++) P.push({x: Math.random() * W, y: Math.random() * H, r: .6 + Math.random() * 1.8,
+      s: .6 + Math.random() * 1.8, o: Math.random() * 6.28, c: cols[i % 4]});
+  }
+  function star(x, y, r) {
+    ctx.beginPath(); ctx.moveTo(x, y - r * 3);
+    ctx.quadraticCurveTo(x, y, x + r * 3, y); ctx.quadraticCurveTo(x, y, x, y + r * 3);
+    ctx.quadraticCurveTo(x, y, x - r * 3, y); ctx.quadraticCurveTo(x, y, x, y - r * 3); ctx.fill();
+  }
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of P) {
+      ctx.globalAlpha = still ? .6 : .15 + .85 * Math.max(0, Math.sin(t / 1000 * p.s + p.o));
+      ctx.fillStyle = p.c;
+      if (p.r > 1.5) star(p.x, p.y, p.r);
+      else { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.28); ctx.fill(); }
+    }
+    if (!still) requestAnimationFrame(draw);
+  }
+  setup(); requestAnimationFrame(draw);
+  addEventListener("resize", () => { setup(); if (still) requestAnimationFrame(draw); });
+})();
+</script>
+</body>
+</html>
